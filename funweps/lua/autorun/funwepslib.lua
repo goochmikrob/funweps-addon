@@ -7,9 +7,6 @@
 
 funweps = funweps or {}
 
-function funweps.Error = error
-function funweps.Copy = weapons.Get
-
 local primary_default = {
         ['Ammo'] = "Pistol",
         ClipSize = 20,
@@ -26,7 +23,7 @@ function funweps.CreateWep(name, swepdata)
     local base = "weapon_base"
     local swep = {}
 
-    if not istable( swepdata ) then funweps.Error("Swepdata passed as "..type(swepdata).." but expected table!")
+    if not istable( swepdata ) then error("Swepdata passed as "..type(swepdata).." but expected table!",1)
 
     -- SHARED
     swep.Base = base
