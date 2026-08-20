@@ -8,6 +8,8 @@
 funweps = funweps or {}
 
 function funweps.Error = error
+function funweps.Copy = weapons.Get
+
 local primary_default = {
         ['Ammo'] = "Pistol",
         ClipSize = 20,
