@@ -8,7 +8,7 @@
 funweps = funweps or {}
 
 function funweps.Error = error
-local DEFAULT_PRIMARY = {
+local primary_default = {
         ['Ammo'] = "Pistol",
         ClipSize = 20,
         DefaultClip = 20,
@@ -34,7 +34,7 @@ function funweps.CreateWep(name, swepdata)
     swep.AdminOnly = swepdata.AdminOnly or false
     swep.WorldModel = swepdata.WorldModel or "models/weapons/w_pistol.mdl"
     swep.ViewModel = swepdata.ViewModel or "models/weapons/v_pistol.mdl"
-    swep.Primary = swepdata.Primary or DEFAULT_PRIMARY
+    swep.Primary = swepdata.Primary or primary_default
     swep.Secondary = swepdata.Secondary or {}
     swep.Weight = swepdata.Weight or 5
 
