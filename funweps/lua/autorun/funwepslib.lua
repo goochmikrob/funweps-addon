@@ -18,7 +18,6 @@ local primary_default = {
 }
 
 
-
 --- Creates weapon based on SWEP base (just not to rewrite same thing over and over)
 --@param string name    Name
 --@param table swepdata     The SWEP table structure
@@ -31,7 +30,7 @@ function funweps.CreateWep(name, swepdata)
 
     -- SHARED
     swep.Base = base
-    swep.ClassName = "funweapon_"..name
+    swep.ClassName = swepdata.ClassName or "funweapon_"..name
     swep.Spawnable = swepdata.Spawnable or true
     swep.AdminOnly = swepdata.AdminOnly or false
     swep.WorldModel = swepdata.WorldModel or "models/weapons/w_pistol.mdl"
@@ -63,3 +62,37 @@ function funweps.CreateWep(name, swepdata)
     return swep
 
 end
+
+
+--- Simply creates an explosion effect in pos
+--@param vector pos Effect Origin
+function funweps.Explosion(pos)
+
+    if not isvector( pos ) then return end
+
+    local effectdata = {}
+    effectdata:SetOrigin( pos )
+
+    util.Effect("Explosion",effectdata)
+
+end
+
+
+--- Checks if it's allowed to copy the model for PropThrower.
+--@param entity ent The entity is being checked
+hook.Add("FWP_PT_CanCopyModel","FunWeapons",function( ent )
+
+    local convar = GetConVar("funweapons_propthrower_maxsize")
+
+    if not convar then return false end
+
+    local rbounds = ent:BoundingRadius()
+    local rbounds_max = convar:GetFloat()
+
+    if rbounds < rbounds_max then
+        return false
+    else
+        return true 
+    end
+
+end)
